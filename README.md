@@ -32,13 +32,13 @@ All other abnormality types were excluded.
 
 The MIAS dataset was downloaded from the University of Essex server.
 Google Drive was mounted in Google Colab and the dataset was extracted into:
-
+```
 miniMIAS_Dataset/
 ├── Info.txt
 └── pgm/
     └── (Original PGM images)
 
-
+```
 The notebook download_MIAS_dataset.ipynb handles this process automatically.
 
 3. Metadata Processing (Info.txt → DataFrame)
@@ -47,21 +47,21 @@ To facilitate data management, the metadata file Info.txt was converted into a s
 Unreliable rows (e.g., invalid coordinates) were removed.
 
 Output file:
-
+```
 miniMIAS_Dataset/
 └── Filtered_info.csv
 
-
+```
 Notebook: DataFrame.ipynb
 
 4. Image Format Conversion (PGM → JPG)
 
 Since YOLOv8 does not support PGM files, all images were converted to JPG and stored in:
-
+```
 MIAS/
 └── Images/
     └── (JPG images)
-
+```
 5. Generating YOLO Annotations
 
 The MIAS dataset describes tumors with center coordinates and a radius.
@@ -100,11 +100,11 @@ TileGridSize = (4,4), ClipLimit = 25–35
 TileGridSize = (8,8), ClipLimit = 15–25
 
 Final enhanced images saved in:
-
+```
 MIAS/
 └── CLAHE/
 
-
+```
 Notebook: different_CLAHEs.ipynb
 
 7. Grayscale-to-RGB Conversion
@@ -113,11 +113,11 @@ YOLOv8 requires 3-channel RGB images.
 All CLAHE-enhanced grayscale images were converted to RGB by duplicating channels.
 
 Output:
-
+```
 MIAS/
 └── CLAHE_RGB/
 
-
+```
 Notebook: grayscale_to_RGB.ipynb
 
 8. Final YOLOv8 Dataset Preparation
@@ -133,13 +133,13 @@ Enhanced RGB images
 Train/Validation/Test split
 
 Output directory:
-
+```
 Yolo_dataset_clahe/
 ├── train/
 ├── valid/
 ├── test/
 └── data.yaml
-
+```
 
 Notebook: dataset.ipynb
 
