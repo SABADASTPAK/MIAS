@@ -67,8 +67,9 @@ MIAS/
 The MIAS dataset describes tumors with center coordinates and a radius.
 These circular annotations were converted into YOLO bounding boxes, normalized in the format:
 
+```
 class  x_center  y_center  width  height
-
+```
 
 - Benign tumors (B) → class 0
 
@@ -82,6 +83,7 @@ Mias_info_with_yolo.csv
 Notebook: bbox_generation.ipynb
 
 **6. Image Enhancement**
+
 6.1 Median Filtering
 
 Applied to:
@@ -184,6 +186,7 @@ YOLOv8n was trained for:
 This experiment demonstrated that imbalanced data leads to unstable detection results, confirming the need for a more structured split or additional datasets.
 
 **11. Repository Structure**
+```
 notebooks/
     download_MIAS_dataset.ipynb
     DataFrame.ipynb
@@ -195,7 +198,7 @@ notebooks/
 miniMIAS_Dataset/
 MIAS/
 Yolo_dataset_clahe/
-
+```
 **12. License**
 
 This project is for research and educational purposes.
