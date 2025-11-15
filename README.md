@@ -1,4 +1,4 @@
-MIAS Mammography Dataset – Preprocessing Pipeline for YOLOv8
+**MIAS Mammography Dataset – Preprocessing Pipeline for YOLOv8**
 
 This repository contains a complete preprocessing pipeline for preparing the Mini-MIAS mammography dataset for training object detection models, specifically YOLOv8.
 All steps—from downloading the dataset to generating YOLO annotations and applying image enhancement—are implemented through a set of Jupyter notebooks.
