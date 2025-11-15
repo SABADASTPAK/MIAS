@@ -8,23 +8,23 @@ All steps—from downloading the dataset to generating YOLO annotations and appl
 The MIAS (Mammographic Image Analysis Society) dataset contains 322 digital mammography images in PGM (1024×1024) format.
 Each image is accompanied by metadata stored in Info.txt, including:
 
-Image reference ID (mdbxxx)
+- Image reference ID (mdbxxx)
 
-Background tissue type: Fatty (F), Fatty-Glandular (G), Dense (D)
+- Background tissue type: Fatty (F), Fatty-Glandular (G), Dense (D)
 
-Abnormality type: CIRC, SPIC, MISC, ARCH, ASYM, CALC, NORM
+- Abnormality type: CIRC, SPIC, MISC, ARCH, ASYM, CALC, NORM
 
-Severity: Benign (B) or Malignant (M)
+- Severity: Benign (B) or Malignant (M)
 
-Coordinates of the abnormality center
+- Coordinates of the abnormality center
 
-Approximate radius (in pixels) of a circle enclosing the abnormality
+-Approximate radius (in pixels) of a circle enclosing the abnormality
 
 In this project, only the following cases were used:
 
-Circumscribed masses (CIRC)
+- Circumscribed masses (CIRC)
 
-Normal images (NORM)
+- Normal images (NORM)
 
 All other abnormality types were excluded.
 
@@ -70,15 +70,15 @@ These circular annotations were converted into YOLO bounding boxes, normalized i
 class  x_center  y_center  width  height
 
 
-Benign tumors (B) → class 0
+- Benign tumors (B) → class 0
 
-Malignant tumors (M) → class 1
+- Malignant tumors (M) → class 1
 
-Output:
+```
 
 Mias_info_with_yolo.csv
 
-
+```
 Notebook: bbox_generation.ipynb
 
 6. Image Enhancement
@@ -86,18 +86,18 @@ Notebook: bbox_generation.ipynb
 
 Applied to:
 
-Reduce impulse noise
+- Reduce impulse noise
 
-Preserve edges and fine structures (e.g., microcalcifications)
+- Preserve edges and fine structures (e.g., microcalcifications)
 
 6.2 Contrast Enhancement using CLAHE
 
 Various tile grid sizes (4×4, 8×8) and clip limits (5–40) were tested.
 Best performing settings:
 
-TileGridSize = (4,4), ClipLimit = 25–35
+- TileGridSize = (4,4), ClipLimit = 25–35
 
-TileGridSize = (8,8), ClipLimit = 15–25
+- TileGridSize = (8,8), ClipLimit = 15–25
 
 Final enhanced images saved in:
 ```
@@ -124,13 +124,13 @@ Notebook: grayscale_to_RGB.ipynb
 
 The final dataset includes:
 
-Only Normal and Circumscribed Mass cases
+- Only Normal and Circumscribed Mass cases
 
-YOLO annotations for each image
+- YOLO annotations for each image
 
-Enhanced RGB images
+- Enhanced RGB images
 
-Train/Validation/Test split
+- Train/Validation/Test split
 
 Output directory:
 ```
@@ -159,27 +159,27 @@ Due to the small number of positive samples, YOLOv8 performance is expected to b
 
 A random split resulted in:
 
-Train: 161 images
+- Train: 161 images
 
-Validation: 45 images
+- Validation: 45 images
 
-Test: 24 images
+- Test: 24 images
 
 However, positive samples were poorly distributed:
 
-Only 17 tumor samples in training
+- Only 17 tumor samples in training
 
-Only 1 tumor sample in testing
+- Only 1 tumor sample in testing
 
 YOLOv8n was trained for:
 
-220 epochs
+- 220 epochs
 
-Image size: 640
+- Image size: 640
 
-Batch size: 16
+- Batch size: 16
 
-Pretrained COCO weights
+- Pretrained COCO weights
 
 This experiment demonstrated that imbalanced data leads to unstable detection results, confirming the need for a more structured split or additional datasets.
 
