@@ -18,7 +18,7 @@ Each image is accompanied by metadata stored in Info.txt, including:
 
 - Coordinates of the abnormality center
 
--Approximate radius (in pixels) of a circle enclosing the abnormality
+- Approximate radius (in pixels) of a circle enclosing the abnormality
 
 In this project, only the following cases were used:
 
