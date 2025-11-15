@@ -3,7 +3,7 @@ MIAS Mammography Dataset – Preprocessing Pipeline for YOLOv8
 This repository contains a complete preprocessing pipeline for preparing the Mini-MIAS mammography dataset for training object detection models, specifically YOLOv8.
 All steps—from downloading the dataset to generating YOLO annotations and applying image enhancement—are implemented through a set of Jupyter notebooks.
 
-1. Dataset Overview
+**1. Dataset Overview**
 
 The MIAS (Mammographic Image Analysis Society) dataset contains 322 digital mammography images in PGM (1024×1024) format.
 Each image is accompanied by metadata stored in Info.txt, including:
@@ -28,7 +28,7 @@ In this project, only the following cases were used:
 
 All other abnormality types were excluded.
 
-2. Dataset Organization and Download
+**2. Dataset Organization and Download**
 
 The MIAS dataset was downloaded from the University of Essex server.
 Google Drive was mounted in Google Colab and the dataset was extracted into:
@@ -41,7 +41,7 @@ miniMIAS_Dataset/
 ```
 The notebook download_MIAS_dataset.ipynb handles this process automatically.
 
-3. Metadata Processing (Info.txt → DataFrame)
+**3. Metadata Processing (Info.txt → DataFrame)**
 
 To facilitate data management, the metadata file Info.txt was converted into a structured Pandas DataFrame.
 Unreliable rows (e.g., invalid coordinates) were removed.
@@ -54,7 +54,7 @@ miniMIAS_Dataset/
 ```
 Notebook: DataFrame.ipynb
 
-4. Image Format Conversion (PGM → JPG)
+**4. Image Format Conversion (PGM → JPG)**
 
 Since YOLOv8 does not support PGM files, all images were converted to JPG and stored in:
 ```
@@ -62,7 +62,7 @@ MIAS/
 └── Images/
     └── (JPG images)
 ```
-5. Generating YOLO Annotations
+**5. Generating YOLO Annotations**
 
 The MIAS dataset describes tumors with center coordinates and a radius.
 These circular annotations were converted into YOLO bounding boxes, normalized in the format:
@@ -81,7 +81,7 @@ Mias_info_with_yolo.csv
 ```
 Notebook: bbox_generation.ipynb
 
-6. Image Enhancement
+**6. Image Enhancement**
 6.1 Median Filtering
 
 Applied to:
@@ -107,7 +107,7 @@ MIAS/
 ```
 Notebook: different_CLAHEs.ipynb
 
-7. Grayscale-to-RGB Conversion
+**7. Grayscale-to-RGB Conversion**
 
 YOLOv8 requires 3-channel RGB images.
 All CLAHE-enhanced grayscale images were converted to RGB by duplicating channels.
@@ -120,7 +120,7 @@ MIAS/
 ```
 Notebook: grayscale_to_RGB.ipynb
 
-8. Final YOLOv8 Dataset Preparation
+**8. Final YOLOv8 Dataset Preparation**
 
 The final dataset includes:
 
@@ -143,7 +143,7 @@ Yolo_dataset_clahe/
 
 Notebook: dataset.ipynb
 
-9. Notes on Class Distribution
+**9. Notes on Class Distribution**
 
 The MIAS dataset is very small, and imbalance exists:
 
@@ -155,7 +155,7 @@ Malignant	18
 
 Due to the small number of positive samples, YOLOv8 performance is expected to be limited even with augmentation.
 
-10. Random Train/Val/Test Experiment
+**10. Random Train/Val/Test Experiment**
 
 A random split resulted in:
 
@@ -183,7 +183,7 @@ YOLOv8n was trained for:
 
 This experiment demonstrated that imbalanced data leads to unstable detection results, confirming the need for a more structured split or additional datasets.
 
-11. Repository Structure
+**11. Repository Structure**
 notebooks/
     download_MIAS_dataset.ipynb
     DataFrame.ipynb
@@ -196,7 +196,7 @@ miniMIAS_Dataset/
 MIAS/
 Yolo_dataset_clahe/
 
-12. License
+**12. License**
 
 This project is for research and educational purposes.
 The MIAS dataset is owned and distributed by the Mammographic Image Analysis Society.
